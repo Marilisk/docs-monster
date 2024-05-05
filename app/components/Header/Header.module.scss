@@ -1,10 +1,65 @@
-.wrap {
+@use'./../../css/vars.scss' as *;
+
+.wrapper {
+    height: 4em;
     width: 100%;
-    padding: 40px 20px;
-    max-width: 1180px;
-    margin: 0 auto;
+    background: $light-gray;
+    border-bottom: 1px solid $light-gray;
+    font-size: 18px;
 }
 
-.container {
-    background: #eaeaea;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 40px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    a {
+        color: $gray-blue;
+    }
+
+    h1 {
+        font-size: 18px;
+        color: $dark-fontcolor;
+        display: flex;
+        flex-direction: column;
+        height: 3em;
+        span {
+            line-height: 1.5em;
+            vertical-align: bottom;
+            display: inline-block;
+            &:last-of-type {
+                color: $brown;
+
+            }
+        }
+
+    }
+
+    .linksWrapper {
+        width: 62%;
+        display: flex;
+        a {
+            flex: 1;
+            font-size: $small-fontSize;
+            transition: all 100ms linear;
+        }
+        div {
+            width: fit-content;
+            margin: 0 auto;
+            transition: transform 100ms linear;
+            &:hover {
+                transform: translateY(4px);
+            }
+        }
+    }
+
+    .activeLink {
+        color: $dark-fontcolor;
+        font-weight: 700;
+    }
 }

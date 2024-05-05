@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.scss";
+import { Mulish } from "next/font/google";
+import "./css/globals.scss";
+import c from "./css/page.module.scss";
+import Header from "./components/Header/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Mulish({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
   title: "Шаблоны документов",
@@ -16,7 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <div className={c.layout}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
