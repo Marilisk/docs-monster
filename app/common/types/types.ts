@@ -1,18 +1,32 @@
-export interface IPartData {
-    name: string
-    inn: string
-    address: string
+import { Instance, Sides } from "./types2"
+
+interface ISuggestion {
+
+}
+interface IDadataResponse {
+    data: ISuggestion[]
+}
+export interface IGetCompanyResponse {
+    query: string
+    data: IDadataResponse
 }
 
+
 export interface ICaseData {
-    court: string
-    judge: string
-    plaintiffs: IPartData[]
-    respondents: IPartData[]
-    titles: {
-        plaintiffs: 'Истцы' | 'Истец'
-        respondents: 'Ответчики' | 'Ответчик'
-    }
+    Id: string;
+    CaseNumber: string;
+    SidesCount: number;
+    RegistrationDate: Date;
+    IsSimpleJustice: boolean;
+    SimpleJusticeCode: null;
+    Instances: Instance[]
+    Sides: Sides
+    CaseTypeMCode: string;
+    CaseType: string;
+    CaseCategoryDispute: string;
+    CaseState: string;
+    SinceStart: string;
+    SubscriptionId: null;
 }
 
 

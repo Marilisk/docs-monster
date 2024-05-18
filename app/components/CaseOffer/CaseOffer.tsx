@@ -5,8 +5,10 @@ import ButtonGroup from './components/ButtonGroup'
 import DocFormer from '../DocFormer/DocFormer'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import { Grow } from '@mui/material'
+import ButtonContent from './components/ButtonContent'
 
 interface IProps {
+
 }
 
 const CaseOffer: FC<IProps> = ({ }: IProps) => {
@@ -14,31 +16,48 @@ const CaseOffer: FC<IProps> = ({ }: IProps) => {
     // console.log('caseData', caseData)
     // A40-12898/2023 exists
 
-    const { caseData, applicantInn, setApplicantInn } = useContext(CaseDataContext)
+    const { caseData, applicantName, setApplicantName } = useContext(CaseDataContext)
+
+    const [plaintiffs, setPLaintiffs] = useState([])
+
+
+    console.log('applicantName', applicantName)
+
 
     if (!caseData) return null
 
     return (
         <Grow in={caseData !== null}>
             <div className={c.wrap}>
-                <div>Суд: Арбитражный суд{caseData.court}</div>
+                <div>Суд: Арбитражный суд{caseData.Instances[caseData.Instances.length - 1].Court.Name}</div>
                 <div>Выберите заявителя:</div>
 
                 <ButtonGroup
-                    array={caseData.plaintiffs}
-                    value={applicantInn}
-                    setValue={setApplicantInn}
-                    title='Истцы'
+                    array={caseData.Sides.Participants}
+                    value={applicantName}
+                    setValue={setApplicantName}
+                    renderButtonContent={(index) => (
+                        <ButtonContent
+                            data={caseData.Sides.Participants[index]}
+                            part='plaintiffs'
+                            index={index}
+                        />
+                    )}
                 />
 
-                <ButtonGroup
+                {/* <ButtonGroup
                     array={caseData.respondents}
                     value={applicantInn}
                     setValue={setApplicantInn}
                     title='Ответчики'
-                />
-
-                {/* {applicantInn && <DocFormer caseData={caseData} docTitle='Отзыв на исковое заявление' />} */}
+                    renderButtonContent={(index) => (
+                        <ButtonContent 
+                            data={caseData.respondents[index]}
+                            part='respondents'
+                            index={index}
+                        />
+                    )}
+                /> */}
 
             </div>
         </Grow>

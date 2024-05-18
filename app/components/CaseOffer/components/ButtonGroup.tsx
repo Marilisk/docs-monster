@@ -1,38 +1,48 @@
-import React, { FC, MouseEvent } from 'react'
-import { IPartData } from '@/app/common/types/types'
+import React, { FC, MouseEvent, ReactNode } from 'react'
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import c from './ButtonGroup.module.scss'
+import { IParticipant } from '@/app/common/types/types2'
+import { prepPartTitle } from '@/app/actions/createDoc/createDoc.helpers'
 
 interface IProps {
-    array: IPartData[]
+    array: IParticipant[]
     value: string | undefined
     setValue: (arg: string) => void
-    title: string
+    renderButtonContent: (arg: number) => ReactNode
 }
 
-const ButtonGroup: FC<IProps> = ({ array, value, setValue, title }: IProps) => {
+const ButtonGroup: FC<IProps> = ({ array, value, setValue, renderButtonContent }: IProps) => {
 
-    const handleChange = (e: MouseEvent, newValue: string) => {
-        setValue(newValue)
-
+    const handleChange = (e: MouseEvent, newValue: number) => {
+        // console.log(newValue)
+        setValue(array[newValue].Name)
     }
+
+    console.log('value', value)
 
     return (
         <div className={c.wrap}>
-            <h3>{title}</h3>
             <ToggleButtonGroup
                 value={value}
                 exclusive
                 onChange={handleChange}
+                orientation='vertical'
             >
-                {array.map((btn => (
-                    <ToggleButton key={btn.inn} value={btn.inn} >
-                        {btn.name}
+                {array.map(((btn, i) => (
+                    <ToggleButton key={i} value={i}
+                        sx={{
+                            textTransform: 'none',
+                            // border:'3px solid orange'
+                        }}
+                    >
+                        {prepPartTitle(btn.SideType)}
+                        {renderButtonContent(i)}
                     </ToggleButton>
                 )))}
             </ToggleButtonGroup>
         </div>
     )
 }
+
 
 export default ButtonGroup

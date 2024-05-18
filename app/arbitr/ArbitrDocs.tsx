@@ -6,40 +6,44 @@ import CaseOffer from '../components/CaseOffer/CaseOffer'
 import DocFormer from '../components/DocFormer/DocFormer'
 import theme from '../css/theme'
 import { ThemeProvider } from '@mui/material'
+import c from './ArbitrDocs.module.scss'
 
-const mockCase: ICaseData = {
+/* const mockCase: ICaseData = {
     judge: "Михайлова Н. А.",
     court: " Московской области",
     plaintiffs: [
         {
             inn: "7714402935",
             name: "АССОЦИАЦИЯ САМОРЕГУЛИРУЕМАЯ ОРГАНИЗАЦИЯ ОБЪЕДИНЕНИЕ АРБИТРАЖНЫХ УПРАВЛЯЮЩИХ ЛИДЕР",
-            address: ''
+            address: '',
+            isActualisedByDadata: false,
+
         },
         {
             inn: "7707083893",
             name: "АНО ПУБЛИЧНОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО СБЕРБАНК РОССИИ",
-            address: ''
-
+            address: '',
+            isActualisedByDadata: false,
         },
         {
             inn: "4401116480",
             name: "ПАО СОВКОМБАНК",
-            address: ''
-
+            address: '',
+            isActualisedByDadata: false,
         },
         {
             inn: "7713793524",
             name: "ООО Профессиональная коллекторская организация Феникс",
-            address: ''
-
+            address: '',
+            isActualisedByDadata: false,
         }
     ],
     respondents: [
         {
             inn: "301502527506",
             name: "Умерова Нурия Саматовна",
-            address: ''
+            address: '',
+            isActualisedByDadata: false,
 
         }
     ],
@@ -48,13 +52,13 @@ const mockCase: ICaseData = {
         respondents: 'Ответчик'
     }
 
-}
+} */
 
 interface ICaseDataContext {
     caseData: ICaseData | null
     setCaseData: (arg: ICaseData | null) => void
-    applicantInn?: string
-    setApplicantInn: (arg: string) => void
+    applicantName?: string
+    setApplicantName: (arg: string) => void
 }
 
 export const CaseDataContext = createContext<ICaseDataContext>({} as ICaseDataContext)
@@ -62,19 +66,25 @@ export const CaseDataContext = createContext<ICaseDataContext>({} as ICaseDataCo
 
 const ArbitrDocs = () => {
 
-    const [caseData, setCaseData] = useState<ICaseData | null>(null/* mockCase */)
+    const [caseData, setCaseData] = useState<ICaseData | null>(null)
+    const [applicantName, setApplicantName] = useState<string>()
 
-    const [applicantInn, setApplicantInn] = useState<string>()
-
-    console.log('ArbitrDocs caseData', caseData)
+    // console.log('ArbitrDocs caseData', caseData)
 
     return (
         <ThemeProvider theme={theme}>
-            <CaseDataContext.Provider value={{ caseData, setCaseData, applicantInn, setApplicantInn }}>
-                <div>
+            <CaseDataContext.Provider value={{ caseData, setCaseData, applicantName, setApplicantName }}>
+                <div className={c.wrap}>
+                    <div className={c.leftCol}>
                     <CaseInput />
                     <CaseOffer />
-                    {applicantInn && <DocFormer docTitle='Отзыв на исковое заявление' />}
+                    {!!applicantName && <DocFormer docTitle='Отзыв на исковое заявление' />}
+                    </div>
+
+                    <div className={c.rightCol}>
+                        <h2>Ваш документ</h2>
+
+                    </div>
                 </div>
             </CaseDataContext.Provider>
         </ThemeProvider>

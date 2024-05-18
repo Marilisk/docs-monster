@@ -5,21 +5,19 @@ import Button from '../uiElements/Button/Button'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 
 interface IProps {
-  // caseData: ICaseData
   docTitle: DocTitleType
 }
 
-const DocFormer: FC<IProps> = ({ /* caseData,  */docTitle }) => {
+const DocFormer: FC<IProps> = ({ docTitle }) => {
 
-  const { caseData, applicantInn, setApplicantInn } = useContext(CaseDataContext)
-  console.log('DocFormer data', {...caseData, docTitle})
+  const { caseData, applicantName } = useContext(CaseDataContext)
 
   if (caseData === null) return null
 
   const downloadDoc = async () => {
 
-    const fileName = await createDoc({...caseData, docTitle})
-    const filePath = window.location.href + fileName
+    const fileName = await createDoc({caseData, docTitle, applicantName})
+    const filePath = window.location.origin + '/templates/'  + fileName
     await fetch(filePath, {
       method: 'GET', headers: { 'Content-Type': 'application/docx', }
     })
@@ -34,18 +32,17 @@ const DocFormer: FC<IProps> = ({ /* caseData,  */docTitle }) => {
         link.click();
         document.body.removeChild(link);
       }).then(() => {
-        deleteFile(`public/${fileName}`)
+        deleteFile(`public/templates/${fileName}`)
       })
       .catch((error) => {
         console.warn(error)
       })
-
   }
 
   return (
     <>
       <Button
-        text='download document'
+        text='скачать'
         onClick={downloadDoc}
       />
 

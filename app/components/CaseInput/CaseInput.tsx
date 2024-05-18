@@ -1,5 +1,5 @@
 'use client'
-import React, { FC, useContext, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import c from './CaseInput.module.scss'
 import { getCaseInfo } from '@/app/actions/actions'
 import FormTextField from '../uiElements/Textfield/FormTextField'
@@ -8,6 +8,7 @@ import Button from '../uiElements/Button/Button'
 import { IGetCaseResponse } from '@/app/common/types/types'
 import Loader from '../uiElements/Loader/Loader/Loader'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
+import ErrorMessage from '../uiElements/ErrorMessage/ErrorMessage'
 
 
 const CaseInput: FC = () => {
@@ -36,7 +37,7 @@ const CaseInput: FC = () => {
     return (
         <div className={c.wrap}>
             <FormTextField
-                label='Введите номер дела'
+                label='номер дела'
                 value={caseNumber}
                 onChange={(v) => setCaseNumber(v as string)}
                 validate={caseNumberValidate}
@@ -47,9 +48,9 @@ const CaseInput: FC = () => {
             />
             <Button onClick={handleSubmit}
                 disabled={isValidateError || isLoading}
-                text='ok'
+                text='искать'
             />
-            {errorMsg && errorMsg}
+            <ErrorMessage msg={errorMsg} />
             {isValidateError && 'error'}
             {isLoading && <Loader />}
         </div>

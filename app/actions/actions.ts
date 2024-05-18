@@ -7,10 +7,10 @@ import api, { apiUrl } from "./api";
 export async function getCaseInfo(caseNumber: string):Promise<IGetCaseResponse> {
     try {
         const response = await api.post('/parser/case', { caseNumber: caseNumber })
-        console.log('getCaseInfo **********', response.data)
+        // console.log('getCaseInfo **********', response.data)
         return response.data
     } catch (error) {
-        console.warn('eeeeeeeeeeeeeeeeeeeeeeerror', error)
+        console.warn(error)
         return {result: null, status: 'error', message: 'Не удалось получить дело. Проверьте сетевое подключение'}
     }
 }

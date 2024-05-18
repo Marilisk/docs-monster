@@ -1,5 +1,22 @@
 
 
 .wrap {
-    margin: 10px 0;
+    margin: 20px 0 0 0;
+    // border: 1px solid black;
+    h3 {
+        padding: 10px;
+    }
+}
+
+
+
+.contentWrap, .loadingWrap {
+    // font-size: 10px;
+
+}
+
+.loadingWrap {
+    background-color: darkcyan;
+    pointer-events: none;
+    opacity: .3;
 }
