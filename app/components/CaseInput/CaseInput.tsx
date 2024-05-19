@@ -29,29 +29,34 @@ const CaseInput: FC = () => {
             setIsLoading(false)
             return
         }
-        setErrorMsg(resp.message || '')
+        setErrorMsg(`${resp.message} Исправьте номер дела.` || '')
         setIsLoading(false)
     }
 
+    useEffect(() => {
+        if (errorMsg) {setErrorMsg('')}
+    }, [caseNumber])
+
 
     return (
-        <div className={c.wrap}>
-            <FormTextField
-                label='номер дела'
-                value={caseNumber}
-                onChange={(v) => setCaseNumber(v as string)}
-                validate={caseNumberValidate}
-                onErrorDetect={setIsValidateError}
-                helperText={errorMsg}
-                size='small'
-
-            />
-            <Button onClick={handleSubmit}
-                disabled={isValidateError || isLoading}
-                text='искать'
-            />
+        <div className={c.container}>
+            <div className={c.wrap}>
+                <FormTextField
+                    label='номер дела'
+                    value={caseNumber}
+                    onChange={(v) => setCaseNumber(v as string)}
+                    validate={caseNumberValidate}
+                    onErrorDetect={setIsValidateError}
+                    helperText={errorMsg}
+                    size='small'
+                />
+                <Button onClick={handleSubmit}
+                    disabled={isValidateError || isLoading || !!errorMsg}
+                    text='искать'
+                />
+            </div>
             <ErrorMessage msg={errorMsg} />
-            {isValidateError && 'error'}
+            {/* {isValidateError && 'error'} */}
             {isLoading && <Loader />}
         </div>
     )

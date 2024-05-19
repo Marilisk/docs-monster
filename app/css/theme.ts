@@ -146,7 +146,7 @@ const theme = createTheme({
         },
         MuiTextField: {
             defaultProps: {
-                variant: "filled",
+                variant: "outlined",
             }
         },
         MuiToggleButtonGroup: {

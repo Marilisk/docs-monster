@@ -3,6 +3,7 @@ import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import c from './ButtonGroup.module.scss'
 import { IParticipant } from '@/app/common/types/types2'
+import { prepPartTitle } from '@/app/actions/createDoc/createDoc.helpers'
 
 interface IProps {
     data: IParticipant
@@ -15,8 +16,6 @@ const ButtonContent: FC<IProps> = ({ data, part, index }) => {
     const { setCaseData, caseData } = useContext(CaseDataContext)
 
     const [isLoading, setIsLoading] = useState(false)
-
-    // console.log('caseData', caseData)
 
     async function getActualisedData() {
         if (!caseData || data.isActualisedByDadata) return
@@ -50,7 +49,7 @@ const ButtonContent: FC<IProps> = ({ data, part, index }) => {
 
     return (
         <div className={isLoading ? c.loadingWrap : c.contentWrap}>
-            <h3>{data.Name}</h3>
+            <h3>{prepPartTitle(data.SideType)}: {data.Name}</h3>
             {data.INN &&
                 <div>ИНН {data.INN}</div>
             }

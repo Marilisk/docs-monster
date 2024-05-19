@@ -35,7 +35,6 @@ const ButtonGroup: FC<IProps> = ({ array, value, setValue, renderButtonContent }
                             // border:'3px solid orange'
                         }}
                     >
-                        {prepPartTitle(btn.SideType)}
                         {renderButtonContent(i)}
                     </ToggleButton>
                 )))}

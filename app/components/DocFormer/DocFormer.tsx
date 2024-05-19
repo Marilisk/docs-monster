@@ -5,14 +5,14 @@ import Button from '../uiElements/Button/Button'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 
 interface IProps {
-  docTitle: DocTitleType
+  // docTitle: DocTitleType
 }
 
-const DocFormer: FC<IProps> = ({ docTitle }) => {
+const DocFormer: FC<IProps> = ({ /* docTitle */ }) => {
 
-  const { caseData, applicantName } = useContext(CaseDataContext)
+  const { caseData, applicantName, docTitle } = useContext(CaseDataContext)
 
-  if (caseData === null) return null
+  if (caseData === null || !applicantName || !docTitle ) return null
 
   const downloadDoc = async () => {
 

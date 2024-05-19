@@ -1,0 +1,9 @@
+@use '../../../css/vars.scss' as *;
+
+.wrap {
+    background-color: $pink;
+    padding: 10px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 6px;
+}

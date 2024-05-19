@@ -1,8 +1,3 @@
-/* export interface Welcome {
-    result: ICaseData;
-    status: string;
-    message: string;
-} */
 
 export type SideType = 'Истец' | 'Ответчик' | 'Третье лицо'
 
