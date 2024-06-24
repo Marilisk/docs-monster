@@ -8,22 +8,19 @@ const StyledBtn = styled(ButtonMui)({
 
 type IProps = {
     text: string
-
 } & ButtonProps
 
 const Button: FC<IProps> = (props) => {
 
-    const {text, ...other} = props
+    const { text, ...other } = props
 
     return (
-        <div>
-            <StyledBtn 
-                variant={props.variant || 'outlined'}
-                {...other}
-            >
-                {text}
-            </StyledBtn>
-        </div>
+        <StyledBtn
+            variant={props.variant || 'outlined'}
+            {...other}
+        >
+            {text}
+        </StyledBtn>
     )
 }
 

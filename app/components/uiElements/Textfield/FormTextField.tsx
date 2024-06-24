@@ -1,5 +1,4 @@
 import { FC, useState } from "react"
-import c from './FormTextField.module.scss'
 import { TextField, TextFieldProps, styled } from "@mui/material"
 
 export const StyledTextField = styled(TextField)({
@@ -23,13 +22,12 @@ const FormTextField: FC<IFormTextFieldProps> = ({
 
     const [localError, setLocalError] = useState('')
 
-    return <div className={c.lineWrap}>
-        <StyledTextField
+    return <StyledTextField
             {...props}
             value={value}
             fullWidth
             error={!!localError}
-            helperText={localError}
+            helperText={localError || props.helperText}
             type={type}
             rows={props.multiline ? 4 : undefined}
             onChange={(e) => {
@@ -44,8 +42,10 @@ const FormTextField: FC<IFormTextFieldProps> = ({
                     localError && setLocalError('')
                 }
             }} 
+            /* FormHelperTextProps={{
+                component: () => <ErrorMessage msg={props.helperText} />
+            }} */
         />
-    </div>
 }
 
 export default FormTextField 

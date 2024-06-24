@@ -1,14 +1,15 @@
 'use client'
-import React, { createContext, useState } from 'react'
+import React, { createContext, Dispatch, SetStateAction, useState } from 'react'
 import CaseInput from '../components/CaseInput/CaseInput'
-import { DocTitleType, ICaseData } from '../common/types/types'
-
+import { DocTitleType } from '../common/types/types'
 import DocFormer from '../components/DocFormer/DocFormer'
 import theme from '../css/theme'
-import { Paper, ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
 import c from './ArbitrDocs.module.scss'
 import DocTitleOffer from '../components/DocTitleOffer/DocTitleOffer'
 import ApplicantOffer from '../components/ApplicantOffer/ApplicantOffer'
+import { ICaseData } from '../common/types/kadArbitrTypes'
+import DocView from '../components/DocView/DocView'
 
 
 interface ICaseDataContext {
@@ -16,8 +17,10 @@ interface ICaseDataContext {
     setCaseData: (arg: ICaseData | null) => void
     applicantName?: string
     setApplicantName: (arg: string) => void
-    docTitle?: DocTitleType
+    docTitle: DocTitleType
     setDocTitle: (arg: DocTitleType) => void
+    docClientUrl?: string
+    setDocClientUrl: Dispatch<SetStateAction<string | undefined>> /* (arg: string) => void */
 }
 
 export const CaseDataContext = createContext<ICaseDataContext>({} as ICaseDataContext)
@@ -27,30 +30,29 @@ const ArbitrDocs = () => {
 
     const [caseData, setCaseData] = useState<ICaseData | null>(null)
     const [applicantName, setApplicantName] = useState<string>()
-    const [docTitle, setDocTitle] = useState<DocTitleType>()
+    const [docTitle, setDocTitle] = useState<DocTitleType>('Отзыв на исковое заявление')
 
-    // console.log('ArbitrDocs caseData', caseData)
+    const [docClientUrl, setDocClientUrl] = useState<string>()
+
+    const isCaseData = !!caseData
 
     return (
         <ThemeProvider theme={theme}>
-            <CaseDataContext.Provider value={{ caseData, setCaseData, applicantName, 
-                setApplicantName,
-                docTitle,
-                setDocTitle,
-                
-                }}>
+            <CaseDataContext.Provider value={{
+                caseData, setCaseData,
+                applicantName, setApplicantName,
+                docTitle, setDocTitle,
+                docClientUrl, setDocClientUrl,
+            }}>
                 <div className={c.wrap}>
-                    <div className={c.leftCol}>
-                    <CaseInput />
-                    <ApplicantOffer />
-                    <DocTitleOffer /> 
-                    <DocFormer />
+                    <div className={isCaseData ? c.leftCol : c.fullCol}>
+                        <CaseInput isCaseData={isCaseData} />
+                        <ApplicantOffer />
+                        <DocTitleOffer />
+                        <DocFormer />
                     </div>
-
-                    <div className={c.rightCol}>
-                        <Paper>
-                        <h2>Ваш документ</h2>
-                        </Paper>
+                    <div className={isCaseData ? c.rightCol : c.hiddenRightCol}>
+                        <DocView />
                     </div>
                 </div>
             </CaseDataContext.Provider>

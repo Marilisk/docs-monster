@@ -9,13 +9,9 @@ export async function getCompany(query:string) {
             query,
             count: 1,
         })
-        console.log('query', query)
-        console.log('response.data', response.data)
         return response.data
     } catch (error) {
         console.warn(error)
         return error
-    }
-
-    
+    }    
 }

@@ -1,0 +1,14 @@
+@use '../../css/vars.scss' as *;
+
+.wrap {
+    border-radius: 8px;
+    border: $thin-gray-border;
+    padding: 10px;
+
+}
+
+.docContainer {
+    height: 80vh;
+}
+
+

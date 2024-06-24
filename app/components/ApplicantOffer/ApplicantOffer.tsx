@@ -5,16 +5,11 @@ import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import { Grow } from '@mui/material'
 import ButtonContent from './components/ButtonContent'
 
-interface IProps {
 
-}
-
-const ApplicantOffer: FC<IProps> = ({ }: IProps) => {
+const ApplicantOffer: FC = () => {
 
     const { caseData, applicantName, setApplicantName } = useContext(CaseDataContext)
-
-    console.log('applicantName', applicantName)
-
+    
     if (!caseData) return null
 
     return (
@@ -29,7 +24,6 @@ const ApplicantOffer: FC<IProps> = ({ }: IProps) => {
                     renderButtonContent={(index) => (
                         <ButtonContent
                             data={caseData.Sides.Participants[index]}
-                            part='plaintiffs'
                             index={index}
                         />
                     )}

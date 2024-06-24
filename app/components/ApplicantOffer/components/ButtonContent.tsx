@@ -2,16 +2,15 @@ import { getCompany } from '@/app/actions/dadata.ts/dadataActions'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import c from './ButtonGroup.module.scss'
-import { IParticipant } from '@/app/common/types/types2'
+import { IParticipant } from '@/app/common/types/kadArbitrTypes'
 import { prepPartTitle } from '@/app/actions/createDoc/createDoc.helpers'
 
 interface IProps {
     data: IParticipant
-    part: 'respondents' | 'plaintiffs'
     index: number
 }
 
-const ButtonContent: FC<IProps> = ({ data, part, index }) => {
+const ButtonContent: FC<IProps> = ({ data, index }) => {
 
     const { setCaseData, caseData } = useContext(CaseDataContext)
 
@@ -22,6 +21,7 @@ const ButtonContent: FC<IProps> = ({ data, part, index }) => {
         setIsLoading(true)
         const actualised = await getCompany(data.INN ? data.INN : data.Name)
         const company = actualised.suggestions[0]
+        // data.SideType === 0 && console.log('company', company)
         if (company) {
             const actual: IParticipant = {
                 ...data,
@@ -29,13 +29,13 @@ const ButtonContent: FC<IProps> = ({ data, part, index }) => {
                 Address: company.data.address.unrestricted_value,
                 isActualisedByDadata: true,
             }
-            const filteredParticips = [...caseData.Sides.Participants]
-            filteredParticips[index] = actual
+            const particips = [...caseData.Sides.Participants]
+            particips[index] = actual
             setCaseData({
                 ...caseData,
                 Sides: {
                     ...caseData.Sides,
-                    Participants: filteredParticips
+                    Participants: particips
                 }
             })
         }
@@ -44,7 +44,7 @@ const ButtonContent: FC<IProps> = ({ data, part, index }) => {
 
     useEffect(() => {
         getActualisedData()
-    }, [!!caseData])
+    }, [])
 
 
     return (
@@ -54,9 +54,11 @@ const ButtonContent: FC<IProps> = ({ data, part, index }) => {
                 <div>ИНН {data.INN}</div>
             }
             <div>
-                {data.Address}
+                адрес: {data.Address}
             </div>
-
+            {/*  <div>
+                {data.isActualisedByDadata ? 'IsActual' : 'NOactual'}
+            </div> */}
         </div>
     )
 }

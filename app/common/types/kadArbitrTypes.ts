@@ -18,7 +18,7 @@ export interface IParticipant {
         name: string
         post: string
         disqualified: any
-      },
+    },
 }
 
 export interface Sides {

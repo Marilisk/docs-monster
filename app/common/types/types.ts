@@ -1,4 +1,4 @@
-import { Instance, Sides } from "./types2"
+import { ICaseData, Instance, Sides } from "./kadArbitrTypes"
 
 interface ISuggestion {
 
@@ -12,32 +12,25 @@ export interface IGetCompanyResponse {
 }
 
 
-export interface ICaseData {
-    Id: string;
-    CaseNumber: string;
-    SidesCount: number;
-    RegistrationDate: Date;
-    IsSimpleJustice: boolean;
-    SimpleJusticeCode: null;
-    Instances: Instance[]
-    Sides: Sides
-    CaseTypeMCode: string;
-    CaseType: string;
-    CaseCategoryDispute: string;
-    CaseState: string;
-    SinceStart: string;
-    SubscriptionId: null;
-}
-
-
 export type DocTitleType = 'Отзыв на исковое заявление' | 'Ходатайство об ознакомлении с материалами дела' | 'Исковое заявление' | 'Ходатайство об отложении с/з'
 
-const docsTitleDirectory:{[key: string]: DocTitleType} = {
+/* export const docsTitleDirectory:{[key: string]: DocTitleType} = {
     1: 'Отзыв на исковое заявление',
     2: 'Ходатайство об ознакомлении с материалами дела',
     3: 'Исковое заявление',
     4: 'Ходатайство об отложении с/з'
+} */
+
+export interface IDocTitle {
+    Name: DocTitleType
 }
+
+export const docsTitleDirectory:IDocTitle[] = [
+    { Name: 'Отзыв на исковое заявление',},
+    { Name: 'Ходатайство об ознакомлении с материалами дела'},
+    { Name: 'Исковое заявление'},
+    { Name: 'Ходатайство об отложении с/з'},
+]
 
 
 type ResponseType = 'not found' | 'success' | 'error' 

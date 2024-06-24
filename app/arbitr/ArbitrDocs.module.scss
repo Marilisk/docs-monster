@@ -1,18 +1,53 @@
-
+@use './../css/vars.scss' as *;
 
 .wrap {
     // border: 2px solid red;
     display: flex;
     gap: 20px;
-    
+    margin-top: 10px;
 }
 
-.leftCol {
+.leftCol, .fullCol {
     width: 38%;
+}
+
+.fullCol {
+    width: 100%;
+    height: 50vh;
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.leftCol, .rightCol {
+    max-height: 86vh;
+    
     // border: 2px solid blueviolet;
 }
 
-.rightCol {
-    // border: 2px solid pink;
+.leftCol {
+    // border: 2px solid blueviolet;
+    // max-height: 84vh;
+    // overflow: scroll;
+}
+
+.rightCol, .hiddenRightCol {
     width: 62%;
+    // padding-top: 20px; 
+    transition: all 200ms linear;
+    transform: none;
+    // border: 1px solid violet;
+}
+
+.hiddenRightCol {
+    // width: 0;
+    padding: 0;
+    opacity: 0.2;
+    display: none;
+    // transform: scale(0.2); 
+    // transform-origin: left top;
+    // width: 70px;
+    // height: 70px;
+    // border: 2px solid orange;
+    // visibility: hidden;
 }
