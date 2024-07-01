@@ -25,11 +25,6 @@ const readFileIntoArrayBuffer = async (fd: Blob) =>
         a.setAttribute('href', url)
         a.setAttribute('download', fileName) 
         document.body.appendChild(a)
-        // a.click()
-        // document.body.removeChild(a)
-        setTimeout(() => {
-            // window.URL.revokeObjectURL(url)
-        }, 1000);
     };
 
 
@@ -37,7 +32,6 @@ export async function createDoc(params: IPrepTemplateParams, setDocClientUrl: Di
 
     const templateFile = await fetch(window.location.origin + '/templates/response-template.docx').then(res => res.blob())
     const template = await readFileIntoArrayBuffer(templateFile)
-
     const preparedData = prepTemplateData(params)
     const report = await createReport({
         template: template as Uint8Array,
@@ -49,16 +43,14 @@ export async function createDoc(params: IPrepTemplateParams, setDocClientUrl: Di
         `${preparedData.docTitle}-${docName}.docx`,
         setDocClientUrl,
     )
-    /* const fileName = 'courtdoc' + '.docx'
-    return fileName */
 }
 
 
-export async function deleteFile(filePath: string) {
+/* export async function deleteFile(filePath: string) {
     try {
-        // await fs.promises.unlink(filePath)
+        await fs.promises.unlink(filePath)
     } catch (error) {
         console.warn(error)
     }
-}
+} */
 

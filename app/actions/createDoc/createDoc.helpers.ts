@@ -4,6 +4,7 @@ import { DocTitleType } from "@/app/common/types/types"
 export interface IPrepTemplateParams {
     caseData: ICaseData
     docTitle: DocTitleType
+    docInstance: string 
     applicantName?: string
     docClientUrl?: string
 }
@@ -41,9 +42,11 @@ export function prepPartTitle(partType: number) {
 
 export function prepTemplateData(params: IPrepTemplateParams) {
 
-    const { caseData, docTitle, applicantName } = params
+    const { caseData, docTitle, applicantName, docInstance } = params
 
-    const courtName = caseData.Instances[0].Court.Name.slice(3)
+    const chosenInstance = caseData.Instances.find(inst => inst.Court.Name === docInstance)
+
+    const courtName = chosenInstance?.Court.Name.slice(3) || ''
 
     const sides = caseData.Sides.Participants.map(part => ({
         title: prepPartTitle(part.SideType),
@@ -55,10 +58,10 @@ export function prepTemplateData(params: IPrepTemplateParams) {
 
     const prepared: ITemplateData = {
         docTitle,
-        courtName,
+        courtName: docInstance,
         sides,
-        judge: caseData.Instances[0].Judges[0].Name,
-        caseNumber: caseData.Instances[0].InstanceNumber
+        judge: chosenInstance?.Judges.reduce((acc, judge) => acc + judge.Name, '') || '',
+        caseNumber: chosenInstance?.InstanceNumber || ''
     }
 
     return prepared

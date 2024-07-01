@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, Dispatch, SetStateAction, useState } from 'react'
+import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import CaseInput from '../components/CaseInput/CaseInput'
 import { DocTitleType } from '../common/types/types'
 import DocFormer from '../components/DocFormer/DocFormer'
@@ -10,6 +10,7 @@ import DocTitleOffer from '../components/DocTitleOffer/DocTitleOffer'
 import ApplicantOffer from '../components/ApplicantOffer/ApplicantOffer'
 import { ICaseData } from '../common/types/kadArbitrTypes'
 import DocView from '../components/DocView/DocView'
+import InstanceOffer from '../components/InstanceOffer/InstanceOffer'
 
 
 interface ICaseDataContext {
@@ -20,7 +21,9 @@ interface ICaseDataContext {
     docTitle: DocTitleType
     setDocTitle: (arg: DocTitleType) => void
     docClientUrl?: string
-    setDocClientUrl: Dispatch<SetStateAction<string | undefined>> /* (arg: string) => void */
+    setDocClientUrl: Dispatch<SetStateAction<string | undefined>>
+    docInstance?: string
+    setDocInstance: (arg: string) => void
 }
 
 export const CaseDataContext = createContext<ICaseDataContext>({} as ICaseDataContext)
@@ -31,10 +34,21 @@ const ArbitrDocs = () => {
     const [caseData, setCaseData] = useState<ICaseData | null>(null)
     const [applicantName, setApplicantName] = useState<string>()
     const [docTitle, setDocTitle] = useState<DocTitleType>('Отзыв на исковое заявление')
+    const [docInstance, setDocInstance] = useState<string>()
 
     const [docClientUrl, setDocClientUrl] = useState<string>()
 
     const isCaseData = !!caseData
+
+    // console.log('caseData in ArbitrDocs', caseData)
+
+    useEffect(() => {
+        const html = document.getElementById('html')
+        if (html) {
+            html.classList.add(c.html)
+        }
+        return () => html?.classList.remove(c.html)
+    }, [])
 
     return (
         <ThemeProvider theme={theme}>
@@ -43,13 +57,17 @@ const ArbitrDocs = () => {
                 applicantName, setApplicantName,
                 docTitle, setDocTitle,
                 docClientUrl, setDocClientUrl,
+                docInstance, setDocInstance,
             }}>
                 <div className={c.wrap}>
                     <div className={isCaseData ? c.leftCol : c.fullCol}>
                         <CaseInput isCaseData={isCaseData} />
-                        <ApplicantOffer />
-                        <DocTitleOffer />
-                        <DocFormer />
+                        <div className={c.scrollBox}>
+                            <InstanceOffer />
+                            <ApplicantOffer />
+                            <DocTitleOffer />
+                            <DocFormer />
+                        </div>
                     </div>
                     <div className={isCaseData ? c.rightCol : c.hiddenRightCol}>
                         <DocView />

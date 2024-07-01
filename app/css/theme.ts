@@ -125,10 +125,12 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     border: '1px solid #E1E9F2',
+                    padding: '10px',
                     borderRadius: '8px',
-                    '&>div, &>h2, &>h3': {
+                    marginTop: '20px',
+                    /* '&>div, &>h2, &>h3': {
                         padding: '20px',
-                    },
+                    }, */
                 },
             },
         },
@@ -157,6 +159,6 @@ const theme = createTheme({
 
     },
 })
-    ;
+
 
 export default theme;

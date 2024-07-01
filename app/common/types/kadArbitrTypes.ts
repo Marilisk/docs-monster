@@ -29,23 +29,23 @@ export interface Sides {
 }
 
 export interface ICaseData {
-    Id: string;
-    CaseNumber: string;
-    SidesCount: number;
-    RegistrationDate: Date;
-    IsSimpleJustice: boolean;
-    SimpleJusticeCode: null;
-    Instances: Instance[];
-    Sides: Sides;
-    CaseTypeMCode: string;
-    CaseType: string;
-    CaseCategoryDispute: string;
-    CaseState: string;
-    SinceStart: string;
-    SubscriptionId: null;
+    Id: string
+    CaseNumber: string
+    SidesCount: number
+    RegistrationDate: Date
+    IsSimpleJustice: boolean
+    SimpleJusticeCode: null
+    Instances: IInstance[]
+    Sides: Sides
+    CaseTypeMCode: string
+    CaseType: string
+    CaseCategoryDispute: string
+    CaseState: string
+    SinceStart: string
+    SubscriptionId: null
 }
 
-export interface Instance {
+export interface IInstance {
     Id: string;
     InstanceNumber: string;
     InstanceLevel: number;

@@ -4,26 +4,24 @@ import { Fab } from '@mui/material'
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import { createDoc } from '@/app/actions/createDoc/createDocOnClient';
 
-interface IProps { }
 
-const DocFormer: FC<IProps> = ({ }) => {
+const DocFormer: FC = () => {
 
   const context = useContext(CaseDataContext)
-  const { caseData, applicantName, docTitle, setDocClientUrl, docClientUrl } = context
+  const { caseData, applicantName, docTitle, setDocClientUrl, docClientUrl, docInstance } = context
 
   const createDocFile = async () => {
-    if (!caseData) return
-    await createDoc({ caseData, docTitle, applicantName, docClientUrl }, setDocClientUrl)
+    if (!caseData || !docInstance) return
+    await createDoc({ caseData, docTitle, applicantName, docClientUrl, docInstance }, setDocClientUrl)
   }
 
   useEffect(() => {
     createDocFile()
-  }, [caseData, applicantName, docTitle])
+  }, [caseData, applicantName, docTitle, docInstance])
 
   useEffect(() => {
     return () => {
       console.log('unmount useEffect DocFormer')
-      // debugger
       const link = document.getElementById('client-document');
       link && document.body.removeChild(link);
       docClientUrl && window.URL.revokeObjectURL(docClientUrl)
