@@ -2,7 +2,7 @@ import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import React, { useContext, useEffect } from 'react'
 import ButtonGroup, { IInstanceWithName } from '../ApplicantOffer/components/ButtonGroup'
 import { Paper } from '@mui/material'
-import { IInstance } from '@/app/common/types/kadArbitrTypes'
+import { IInstance } from '@/common/types/kadArbitrTypes'
 
 const InstanceOffer = () => {
 
@@ -33,7 +33,7 @@ const InstanceOffer = () => {
                 array={preparedInstances}
                 renderButtonContent={(index) => (
                     <div>
-                        {preparedInstances[index].Name} level: {preparedInstances[index].InstanceLevel}
+                        {preparedInstances[index].Name} {/* level: {preparedInstances[index].InstanceLevel} */}
                     </div>
                 )}
                 value={docInstance}

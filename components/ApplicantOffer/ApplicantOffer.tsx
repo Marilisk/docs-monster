@@ -13,8 +13,7 @@ const ApplicantOffer: FC = () => {
 
     return (
         <div className={c.wrap}>
-            <h3>{caseData.Instances[caseData.Instances.length - 1].Court.Name}</h3>
-            <div>Выберите заявителя:</div>
+            <h3>Выберите заявителя:</h3>
             <ButtonGroup
                 array={caseData.Sides.Participants}
                 value={applicantName}

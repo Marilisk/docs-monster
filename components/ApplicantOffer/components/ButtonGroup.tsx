@@ -1,8 +1,8 @@
 import React, { FC, MouseEvent, ReactNode } from 'react'
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 import c from './ButtonGroup.module.scss'
-import { IInstance, IParticipant } from '@/app/common/types/kadArbitrTypes'
-import { IDocTitle } from '@/app/common/types/types'
+import { IInstance, IParticipant } from '@/common/types/kadArbitrTypes'
+import { IDocTitle } from '@/common/types/types'
 
 export interface IInstanceWithName extends IInstance {
     Name: string

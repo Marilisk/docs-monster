@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
 import "./css/globals.scss";
 import c from "./css/page.module.scss";
-import Header from "./components/Header/Header";
+import Header from "@/components/Header/Header";
 
 const inter = Mulish({ subsets: ["latin", "cyrillic"] });
 

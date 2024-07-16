@@ -2,27 +2,28 @@ import React, { FC, useContext, useState } from 'react'
 import c from './CaseInput.module.scss'
 import { getCaseInfo } from '@/app/actions/actions'
 import FormTextField from '../uiElements/Textfield/FormTextField'
-import { caseNumberValidate } from '@/app/common/validations/validations'
 import Button from '../uiElements/Button/Button'
-import { IGetCaseResponse } from '@/app/common/types/types'
 import Loader from '../uiElements/Loader/Loader/Loader'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import ErrorMessage from '../uiElements/ErrorMessage/ErrorMessage'
 import { useHandleSubmitByEnterkey } from './CaseInput.helpers'
 import SearchIcon from '@mui/icons-material/Search';
 import ResetButton from '../ResetButton/ResetButton'
+import { IGetCaseResponse } from '@/common/types/types'
+import { caseNumberValidate } from '@/common/validations/validations'
 
 interface IProps {
     isCaseData: boolean
 }
 const CaseInput: FC<IProps> = ({ isCaseData }) => {
 
-    // const [caseNumber, setCaseNumber] = useState('A40-273996/2022')  // дело в апелляцией
-    const [caseNumber, setCaseNumber] = useState('A40-21103/2023')  // дело с кучей сторон
+    const [caseNumber, setCaseNumber] = useState('A40-273996/2022')  // дело в апелляцией
+    // const [caseNumber, setCaseNumber] = useState('A40-21103/2023')  // дело с кучей сторон
+    // const [caseNumber, setCaseNumber] = useState('')  
     const [isLoading, setIsLoading] = useState(false)
     const [isValidateError, setIsValidateError] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
-    // console.log('errorMsg', errorMsg)
+    
     const { setCaseData } = useContext(CaseDataContext)
 
     const handleSubmit = async () => {

@@ -1,7 +1,7 @@
 'use server'
 
-import { IGetCaseResponse } from "../common/types/types";
-import api, { apiUrl } from "./api";
+import { IGetCaseResponse } from "@/common/types/types";
+import api from "./api";
 
 
 export async function getCaseInfo(caseNumber: string):Promise<IGetCaseResponse> {

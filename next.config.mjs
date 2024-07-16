@@ -1,4 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  // rewrites: async () => 
+
+    /* webpack: {
+
+    } */
+
+    experimental: {
+      optimizePackageImports: [
+        '@material-ui/core'
+      ]
+    }
+};
 
 export default nextConfig;

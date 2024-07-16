@@ -46,11 +46,4 @@ export async function createDoc(params: IPrepTemplateParams, setDocClientUrl: Di
 }
 
 
-/* export async function deleteFile(filePath: string) {
-    try {
-        await fs.promises.unlink(filePath)
-    } catch (error) {
-        console.warn(error)
-    }
-} */
 

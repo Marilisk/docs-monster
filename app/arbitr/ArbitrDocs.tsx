@@ -1,17 +1,16 @@
 'use client'
 import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
-import CaseInput from '../components/CaseInput/CaseInput'
-import { DocTitleType } from '../common/types/types'
-import DocFormer from '../components/DocFormer/DocFormer'
 import theme from '../css/theme'
 import { ThemeProvider } from '@mui/material'
 import c from './ArbitrDocs.module.scss'
-import DocTitleOffer from '../components/DocTitleOffer/DocTitleOffer'
-import ApplicantOffer from '../components/ApplicantOffer/ApplicantOffer'
-import { ICaseData } from '../common/types/kadArbitrTypes'
-import DocView from '../components/DocView/DocView'
-import InstanceOffer from '../components/InstanceOffer/InstanceOffer'
-
+import { ICaseData } from '@/common/types/kadArbitrTypes'
+import { DocTitleType } from '@/common/types/types'
+import CaseInput from '@/components/CaseInput/CaseInput'
+import InstanceOffer from '@/components/InstanceOffer/InstanceOffer'
+import ApplicantOffer from '@/components/ApplicantOffer/ApplicantOffer'
+import DocTitleOffer from '@/components/DocTitleOffer/DocTitleOffer'
+import DocFormer from '@/components/DocFormer/DocFormer'
+import DocView from '@/components/DocView/DocView'
 
 interface ICaseDataContext {
     caseData: ICaseData | null
@@ -35,12 +34,9 @@ const ArbitrDocs = () => {
     const [applicantName, setApplicantName] = useState<string>()
     const [docTitle, setDocTitle] = useState<DocTitleType>('Отзыв на исковое заявление')
     const [docInstance, setDocInstance] = useState<string>()
-
     const [docClientUrl, setDocClientUrl] = useState<string>()
 
     const isCaseData = !!caseData
-
-    // console.log('caseData in ArbitrDocs', caseData)
 
     useEffect(() => {
         const html = document.getElementById('html')

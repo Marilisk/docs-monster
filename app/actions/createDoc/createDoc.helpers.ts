@@ -1,5 +1,6 @@
-import { ICaseData, SideType } from "@/app/common/types/kadArbitrTypes"
-import { DocTitleType } from "@/app/common/types/types"
+import { ICaseData, SideType } from "@/common/types/kadArbitrTypes"
+import { DocTitleType } from "@/common/types/types"
+
 
 export interface IPrepTemplateParams {
     caseData: ICaseData
@@ -46,8 +47,6 @@ export function prepTemplateData(params: IPrepTemplateParams) {
 
     const chosenInstance = caseData.Instances.find(inst => inst.Court.Name === docInstance)
 
-    const courtName = chosenInstance?.Court.Name.slice(3) || ''
-
     const sides = caseData.Sides.Participants.map(part => ({
         title: prepPartTitle(part.SideType),
         isApplicant: part.Name === applicantName,
@@ -56,9 +55,13 @@ export function prepTemplateData(params: IPrepTemplateParams) {
         inn: part.INN || '',
     }))
 
+    const courtName = docInstance.slice(3)
+    // тут прописать регулярку чтобы АС заменялся на "арбитражный суд" а не просто слайс
+    console.log(docInstance)
+
     const prepared: ITemplateData = {
         docTitle,
-        courtName: docInstance,
+        courtName,
         sides,
         judge: chosenInstance?.Judges.reduce((acc, judge) => acc + judge.Name, '') || '',
         caseNumber: chosenInstance?.InstanceNumber || ''

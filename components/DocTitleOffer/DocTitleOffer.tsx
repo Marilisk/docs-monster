@@ -2,8 +2,8 @@ import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import React, { useContext } from 'react'
 import c from './DocTitleOffer.module.scss'
 import ButtonGroup from '../ApplicantOffer/components/ButtonGroup'
-import { docsTitleDirectory, DocTitleType } from '@/app/common/types/types'
 import TitleButtonContent from './TitleButtonContent/TitleButtonContent'
+import { docsTitleDirectory, DocTitleType } from '@/common/types/types'
 
 const DocTitleOffer = () => {
 
