@@ -2,8 +2,7 @@ import React from 'react'
 import ArbitrDocs from './ArbitrDocs'
 import c from './ArbitrDocs.module.scss'
 
-const Arbitr = () => {
-
+const Arbitr = async () => {
   
   return (
     <div className={c.pageWrap}>

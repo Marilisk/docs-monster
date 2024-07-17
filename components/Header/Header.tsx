@@ -1,8 +1,6 @@
 import React from 'react'
 import c from './Header.module.scss'
 import Link from 'next/link'
-// import { usePathname } from 'next/navigation'
-import { headers } from "next/headers";
 import LinkButton from './components/LinkButton';
 
 export interface IRoute {

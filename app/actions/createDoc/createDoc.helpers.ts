@@ -8,6 +8,7 @@ export interface IPrepTemplateParams {
     docInstance: string 
     applicantName?: string
     docClientUrl?: string
+    docFileName?: string
 }
 interface IPartFromTemplate {
     title: SideType

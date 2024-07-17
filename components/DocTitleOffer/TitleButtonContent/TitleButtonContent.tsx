@@ -1,4 +1,4 @@
-import { DocTitleType } from '@/app/common/types/types'
+import { DocTitleType } from '@/common/types/types'
 import React, { FC } from 'react'
 
 interface IProps {

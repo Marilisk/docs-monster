@@ -1,4 +1,4 @@
-import { ICaseData, Instance, Sides } from "./kadArbitrTypes"
+import { ICaseData } from "./kadArbitrTypes"
 
 interface ISuggestion {
 
@@ -13,13 +13,6 @@ export interface IGetCompanyResponse {
 
 
 export type DocTitleType = 'Отзыв на исковое заявление' | 'Ходатайство об ознакомлении с материалами дела' | 'Исковое заявление' | 'Ходатайство об отложении с/з'
-
-/* export const docsTitleDirectory:{[key: string]: DocTitleType} = {
-    1: 'Отзыв на исковое заявление',
-    2: 'Ходатайство об ознакомлении с материалами дела',
-    3: 'Исковое заявление',
-    4: 'Ходатайство об отложении с/з'
-} */
 
 export interface IDocTitle {
     Name: DocTitleType

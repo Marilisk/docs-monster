@@ -2,8 +2,8 @@ import { getCompany } from '@/app/actions/dadata.ts/dadataActions'
 import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import c from './ButtonGroup.module.scss'
-import { IParticipant } from '@/app/common/types/kadArbitrTypes'
 import { prepPartTitle } from '@/app/actions/createDoc/createDoc.helpers'
+import { IParticipant } from '@/common/types/kadArbitrTypes'
 
 interface IProps {
     data: IParticipant

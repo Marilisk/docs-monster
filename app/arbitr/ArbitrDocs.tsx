@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
-import theme from '../css/theme'
+import theme from '../../css/theme'
 import { ThemeProvider } from '@mui/material'
 import c from './ArbitrDocs.module.scss'
 import { ICaseData } from '@/common/types/kadArbitrTypes'

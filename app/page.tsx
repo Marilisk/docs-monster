@@ -1,4 +1,4 @@
-import s from "./css/page.module.scss";
+import s from "@/css/page.module.scss";
 
 
 
