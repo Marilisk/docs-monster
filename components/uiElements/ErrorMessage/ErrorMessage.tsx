@@ -12,9 +12,9 @@ const ErrorMessage: FC<IProps> = ({ msg }) => {
 
     return (
         <div>
-            <Fade in={!!msg}>
-                <div className={c.wrap}>
-                    {msg}
+            <Fade in={ !!msg }>
+                <div className={ c.wrap }>
+                    { msg }
                 </div>
             </Fade>
         </div>

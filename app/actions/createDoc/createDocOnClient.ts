@@ -13,19 +13,19 @@ const readFileIntoArrayBuffer = async (fd: Blob) =>
         reader.readAsArrayBuffer(fd)
     });
 
-    const saveDataToFile = (data: Uint8Array, fileName: string, setDocClientUrl: Dispatch<SetStateAction<string | undefined>>) => {
-        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        const url = window.URL.createObjectURL(blob)
-        setDocClientUrl(url)
-        let a = document.getElementById('client-document')
-        if (!a) {
-            a = document.createElement('a')
-            a.id = 'client-document'
-        }
-        a.setAttribute('href', url)
-        a.setAttribute('download', fileName) 
-        document.body.appendChild(a)
-    };
+const saveDataToFile = (data: Uint8Array, fileName: string, setDocClientUrl: Dispatch<SetStateAction<string | undefined>>) => {
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+    const url = window.URL.createObjectURL(blob)
+    setDocClientUrl(url)
+    let a = document.getElementById('client-document')
+    if (!a) {
+        a = document.createElement('a')
+        a.id = 'client-document'
+    }
+    a.setAttribute('href', url)
+    a.setAttribute('download', fileName) 
+    document.body.appendChild(a)
+};
 
 
 export async function createDoc(params: IPrepTemplateParams, setDocClientUrl: Dispatch<SetStateAction<string | undefined>>) {

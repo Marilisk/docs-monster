@@ -30,14 +30,14 @@ export function prepPartTitle(partType: number) {
     let title: SideType = 'Истец'
 
     switch (partType) {
-        case 1: {
-            title = 'Ответчик'
-            break
-        }
-        case 2: {
-            title = 'Третье лицо'
-            break
-        }
+    case 1: {
+        title = 'Ответчик'
+        break
+    }
+    case 2: {
+        title = 'Третье лицо'
+        break
+    }
     }
     return title
 }
@@ -56,13 +56,11 @@ export function prepTemplateData(params: IPrepTemplateParams) {
         inn: part.INN || '',
     }))
 
-    const courtName = docInstance.slice(3)
-    // тут прописать регулярку чтобы АС заменялся на "арбитражный суд" а не просто слайс
-    console.log(docInstance)
+    const preparedCourtName = docInstance.replace(/АС/, 'арбитражный суд')
 
     const prepared: ITemplateData = {
         docTitle,
-        courtName,
+        courtName: preparedCourtName,
         sides,
         judge: chosenInstance?.Judges.reduce((acc, judge) => acc + judge.Name, '') || '',
         caseNumber: chosenInstance?.InstanceNumber || ''

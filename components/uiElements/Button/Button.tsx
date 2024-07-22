@@ -16,10 +16,10 @@ const Button: FC<IProps> = (props) => {
 
     return (
         <StyledBtn
-            variant={props.variant || 'outlined'}
-            {...other}
+            variant={ props.variant || 'outlined' }
+            { ...other }
         >
-            {text}
+            { text }
         </StyledBtn>
     )
 }

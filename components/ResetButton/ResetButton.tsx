@@ -20,11 +20,11 @@ const ResetButton: FC<IProps> = ({ setCaseNumber, isCaseData }) => {
     }
 
     return (
-        <div className={c.resetWrap}>
-            <Button onClick={handleReset}
-                disabled={!isCaseData}
+        <div className={ c.resetWrap }>
+            <Button onClick={ handleReset }
+                disabled={ !isCaseData }
                 text='сбросить'
-                className={btnC.btn}
+                className={ btnC.btn }
             />
         </div>
     )

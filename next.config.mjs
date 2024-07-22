@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  // rewrites: async () => 
+    pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+    // rewrites: async () => 
 
     /* webpack: {
 
     } */
 
     experimental: {
-      optimizePackageImports: [
-        '@material-ui/core'
-      ]
+        optimizePackageImports: [
+            '@material-ui/core'
+        ]
     }
 };
 

@@ -7,11 +7,11 @@ interface IProps {
 
 const TitleButtonContent:FC<IProps> = ({title}) => {
 
-  return (
-    <div>
-        {title}
-    </div>
-  )
+    return (
+        <div>
+            { title }
+        </div>
+    )
 }
 
 export default TitleButtonContent

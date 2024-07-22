@@ -17,7 +17,8 @@ interface IProps {
 }
 const CaseInput: FC<IProps> = ({ isCaseData }) => {
 
-    const [caseNumber, setCaseNumber] = useState('A40-273996/2022')  // дело в апелляцией
+    // const [caseNumber, setCaseNumber] = useState('A40-273996/2022')  // дело в апелляцией
+    const [caseNumber, setCaseNumber] = useState('A50-4898/22')  // дело простое
     // const [caseNumber, setCaseNumber] = useState('A40-21103/2023')  // дело с кучей сторон
     // const [caseNumber, setCaseNumber] = useState('')  
     const [isLoading, setIsLoading] = useState(false)
@@ -44,34 +45,34 @@ const CaseInput: FC<IProps> = ({ isCaseData }) => {
 
 
     return (
-        <div className={isCaseData ? c.container : c.bigContainer}>
+        <div className={ isCaseData ? c.container : c.bigContainer }>
 
-            <ResetButton isCaseData={isCaseData} setCaseNumber={setCaseNumber} />
+            <ResetButton isCaseData={ isCaseData } setCaseNumber={ setCaseNumber } />
 
-            <div className={isCaseData ? c.wrap : c.bigWrap}>
+            <div className={ isCaseData ? c.wrap : c.bigWrap }>
                 <FormTextField
-                    label={isCaseData ? 'номер дела' : 'Введите номер дела'}
-                    value={caseNumber}
-                    onChange={(v) => {
+                    label={ isCaseData ? 'номер дела' : 'Введите номер дела' }
+                    value={ caseNumber }
+                    onChange={ (v) => {
                         setCaseNumber(v as string)
                         if (errorMsg) { setErrorMsg('') }
-                    }}
-                    validate={caseNumberValidate}
-                    onErrorDetect={setIsValidateError}
-                    size={isCaseData ? 'small' : 'medium'}
-                    InputProps={{ startAdornment: <SearchIcon /> }}
+                    } }
+                    validate={ caseNumberValidate }
+                    onErrorDetect={ setIsValidateError }
+                    size={ isCaseData ? 'small' : 'medium' }
+                    InputProps={ { startAdornment: <SearchIcon /> } }
                     autoFocus
                 />
-                <div className={c.errorBlock}>
-                    <ErrorMessage msg={errorMsg} />
+                <div className={ c.errorBlock }>
+                    <ErrorMessage msg={ errorMsg } />
                 </div>
-                <Button onClick={handleSubmit}
-                    disabled={isFoundDisabled}
+                <Button onClick={ handleSubmit }
+                    disabled={ isFoundDisabled }
                     text='искать'
-                    className={c.btn}
+                    className={ c.btn }
                 />
             </div>
-            {isLoading && <Loader />}
+            { isLoading && <Loader /> }
         </div>
     )
 }

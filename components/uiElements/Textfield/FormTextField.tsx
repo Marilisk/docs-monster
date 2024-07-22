@@ -14,7 +14,7 @@ type IFormTextFieldProps = {
     type?: 'text' | 'password'
     onChange?: (v: string) => void
     onErrorDetect?: (v: boolean) => void
-}  & TextFieldProps 
+} & TextFieldProps
 
 const FormTextField: FC<IFormTextFieldProps> = ({
     onErrorDetect, value, validate, onChange, type = 'text', ...props
@@ -23,29 +23,26 @@ const FormTextField: FC<IFormTextFieldProps> = ({
     const [localError, setLocalError] = useState('')
 
     return <StyledTextField
-            {...props}
-            value={value}
-            fullWidth
-            error={!!localError}
-            helperText={localError || props.helperText}
-            type={type}
-            rows={props.multiline ? 4 : undefined}
-            onChange={(e) => {
-                onErrorDetect && onErrorDetect(false)
-                const value = e.target.value
-                onChange && onChange(value)
-                const err = validate && validate(value)
-                if (err) {
-                    setLocalError(err)
-                    onErrorDetect && onErrorDetect(true)
-                } else {
-                    localError && setLocalError('')
-                }
-            }} 
-            /* FormHelperTextProps={{
-                component: () => <ErrorMessage msg={props.helperText} />
-            }} */
-        />
+        {...props}
+        value={value}
+        fullWidth
+        error={!!localError}
+        helperText={localError || props.helperText}
+        type={type}
+        rows={props.multiline ? 4 : undefined}
+        onChange={(e) => {
+            onErrorDetect && onErrorDetect(false)
+            const value = e.target.value
+            onChange && onChange(value)
+            const err = validate && validate(value)
+            if (err) {
+                setLocalError(err)
+                onErrorDetect && onErrorDetect(true)
+            } else {
+                localError && setLocalError('')
+            }
+        }}
+    />
 }
 
 export default FormTextField 

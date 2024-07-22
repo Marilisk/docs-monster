@@ -1,13 +1,12 @@
-import React, { FC, useContext } from 'react'
-import c from './ApplicantOffer.module.scss'
-import ButtonGroup from './components/ButtonGroup'
-import { CaseDataContext } from '@/app/arbitr/ArbitrDocs'
-import ButtonContent from './components/ButtonContent'
-
+import React, { FC, useContext } from "react"
+import c from "./ApplicantOffer.module.scss"
+import ButtonGroup from "./components/ButtonGroup"
+import { CaseDataContext } from "@/app/arbitr/ArbitrDocs"
+import ButtonContent from "./components/ButtonContent"
 
 const ApplicantOffer: FC = () => {
-
-    const { caseData, applicantName, setApplicantName } = useContext(CaseDataContext)
+    const { caseData, applicantName, setApplicantName } =
+        useContext(CaseDataContext)
 
     if (!caseData) return null
 
@@ -18,7 +17,7 @@ const ApplicantOffer: FC = () => {
                 array={caseData.Sides.Participants}
                 value={applicantName}
                 setValue={setApplicantName}
-                renderButtonContent={(index) => (
+                renderButtonContent={index => (
                     <ButtonContent
                         data={caseData.Sides.Participants[index]}
                         index={index}

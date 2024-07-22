@@ -4,11 +4,11 @@ import c from './ArbitrDocs.module.scss'
 
 const Arbitr = async () => {
   
-  return (
-    <div className={c.pageWrap}>
-      <ArbitrDocs />
-    </div>
-  )
+    return (
+        <div className={ c.pageWrap }>
+            <ArbitrDocs />
+        </div>
+    )
 }
 
 export default Arbitr

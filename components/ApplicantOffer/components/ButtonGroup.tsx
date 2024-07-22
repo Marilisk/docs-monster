@@ -23,29 +23,29 @@ const ButtonGroup: FC<IProps> = ({ array, value, setValue, renderButtonContent }
 
 
     return (
-        <div className={c.wrap}>
+        <div className={ c.wrap }>
             <ToggleButtonGroup
-                value={value}
+                value={ value }
                 exclusive
-                onChange={handleChange}
+                onChange={ handleChange }
                 orientation='vertical'
-                sx={{ 
+                sx={ { 
                     width: '100%'
-                }}
+                } }
             >
-                {array.map(((btn, i) => (
-                    <ToggleButton key={`${btn?.Name}${i}`} 
-                    value={btn.Name}
+                { array.map(((btn, i) => (
+                    <ToggleButton key={ `${btn?.Name}${i}` } 
+                        value={ btn.Name }
                         fullWidth
-                        sx={{
+                        sx={ {
                             textTransform: 'none',
                             textAlign: 'left',
                             // border:'3px solid orange'
-                        }}
+                        } }
                     >
-                        {renderButtonContent(i)}
+                        { renderButtonContent(i) }
                     </ToggleButton>
-                )))}
+                ))) }
             </ToggleButtonGroup>
         </div>
     )

@@ -48,17 +48,17 @@ const ButtonContent: FC<IProps> = ({ data, index }) => {
 
 
     return (
-        <div className={isLoading ? c.loadingWrap : c.contentWrap}>
-            <h3>{prepPartTitle(data.SideType)}: {data.Name}</h3>
-            {data.INN &&
-                <div>ИНН {data.INN}</div>
+        <div className={ isLoading ? c.loadingWrap : c.contentWrap }>
+            <h3>{ prepPartTitle(data.SideType) }: { data.Name }</h3>
+            { data.INN &&
+                <div>ИНН { data.INN }</div>
             }
             <div>
-                адрес: {data.Address}
+                адрес: { data.Address }
             </div>
-            {/*  <div>
+            { /*  <div>
                 {data.isActualisedByDadata ? 'IsActual' : 'NOactual'}
-            </div> */}
+            </div> */ }
         </div>
     )
 }

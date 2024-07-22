@@ -35,7 +35,7 @@ const DocView: FC = () => {
     }
 
     useEffect(() => {
-        if (!!caseData) {
+        if (caseData) {
             handleMeasure()
         }
         window.addEventListener('resize', handleMeasure);
